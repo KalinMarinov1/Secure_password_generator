@@ -1,25 +1,34 @@
 import numpy as np
 import string
+import random as random
 
 class PasswordGen():
     def __init__(self):
+        self.index = 0
         self.currentpass = str()
         self.dummychars = [',', '!', '_', '#', '$', '@', '(', ')', '[', ']',
                            '-', '.', '&', '-', '=']
 
     def GenerateNumbers(self):
-        raw_x = np.random.randint(low=0,high=9)
-        self.currentpass.__add__(str(raw_x))
+        self.index = np.random.randint(low=0,high=9)
+        self.currentpass += (str(self.index))
 
     def GenerateSymbols(self):
-        index = np.random.randint(low=0, high=len(self.dummychars))
-        self.currentpass.__add__( self.dummychars[index])
+        self.index = np.random.randint(low=0, high=len(self.dummychars))
+        self.currentpass += (self.dummychars[self.index])
 
     def GenerateLower(self):
-        self.currentpass.__add__(np.random.choice(string.ascii_lowercase))
+        self.index = np.random.randint(low=0,high=25)                 #index in ascii_lower chars
+        self.currentpass += string.ascii_lowercase[self.index]
 
     def GenerateUpper(self):
-        self.currentpass.__add__(np.random.choice(string.ascii_uppercase))
+        self.index = np.random.randint(low=0, high=25)                # index in ascii_upper chars
+        self.currentpass += string.ascii_uppercase[self.index]
+
+    def ShufflePassword(self):
+        aftershuf = list(self.currentpass)
+        random.shuffle(aftershuf)
+        self.currentpass = ''.join(aftershuf)
 
     def CallOthers(self):
         raw_x = input("How many chars of each ? :")
@@ -33,5 +42,12 @@ class PasswordGen():
             self.GenerateUpper()
             x -= 1
 
+        self.ShufflePassword()
+
+    def GetPass(self):
+        return self.currentpass
+
+
 x = PasswordGen()
 x.CallOthers()
+print(x.GetPass())
