@@ -2,12 +2,13 @@ import numpy as np
 import string
 import random as random
 
-class PasswordGen():
+
+class PasswordGen:
     def __init__(self):
         self.index = 0
         self.currentpass = str()
         self.dummychars = [',', '!', '_', '#', '$', '@', '(', ')', '[', ']',
-                           '-', '.', '&', '-', '=']
+                           '-', '.', '&', '=', '{', '}']
 
     def GenerateNumbers(self):
         self.index = np.random.randint(low=0,high=9)
@@ -18,7 +19,7 @@ class PasswordGen():
         self.currentpass += (self.dummychars[self.index])
 
     def GenerateLower(self):
-        self.index = np.random.randint(low=0,high=25)                 #index in ascii_lower chars
+        self.index = np.random.randint(low=0,high=25)                 # index in ascii_lower chars
         self.currentpass += string.ascii_lowercase[self.index]
 
     def GenerateUpper(self):
@@ -33,6 +34,7 @@ class PasswordGen():
     def CallOthers(self):
         raw_x = input("How many chars of each ? :")
         x = int(raw_x)
+        del raw_x                                #free memory from unused variable.
         if x < 2 or x > 10:
             x = 5
         while x > 0:
