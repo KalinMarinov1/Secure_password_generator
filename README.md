@@ -9,6 +9,7 @@ secure and useful passwords that i may use with length of at least 12
 <br> *the cycle continues as low as 2, and as high as 10 times
 <br> *The user is asked "How many chars of each? :"
 <br> *By entering 2, it will generate a password of length 8, lowest possible size  <br>for secure password
+<br> *When generating random chars finishes, the string is shuffled, so we get random position for each char.
 
 <br>
 <br> Now here's a list of several generated password :
